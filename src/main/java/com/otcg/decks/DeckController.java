@@ -1,5 +1,6 @@
 package com.otcg.decks;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.validation.annotation.Validated;
@@ -19,8 +20,14 @@ public class DeckController {
 	}
 
 	@PostMapping("/create")
-	public String createDeck(@RequestBody int id, String name, String tcg, ArrayList cards){
-		return deckService.createDeck(id, name, tcg, cards);
+	public String createDeck(@RequestBody @JsonProperty Object newDeck){
+		//why is this a LinkedHashMap
+		System.out.println(newDeck);
+		System.out.println(newDeck.getClass());
+
+		return "deck created";
+
+		//return deckService.createDeck(id, name, tcg, cards);
 	}
 
 	@GetMapping("/deck")

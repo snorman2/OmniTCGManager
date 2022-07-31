@@ -4,7 +4,7 @@ package com.otcg.tcgs.bakugan;
  * <pre>
  *
  *  OTCG Manager
- *  File: CardTypes.java
+ *  File: BakuCores.java
  *
  *
  *  Description:

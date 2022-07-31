@@ -8,7 +8,7 @@ package com.otcg.tcgs.bakugan;
  *
  *
  *  Description:
- *  The class enumerate various  types of ETRANSACTION table
+ *  Card Model class for Bakugan
  *
  * </pre>
  */
@@ -30,75 +30,83 @@ public class BKGCardModel {
         return new Object[]{number, cardName, cardType, faction, energyCost, pairedBakuCores, baseBakugan, bPower, damage, rarity};
     }
 
-    public String getCardName(){
+    public int getNumber() {
+        return number;
+    }
+
+    public void setNumber(int number) {
+        this.number = number;
+    }
+
+    public String getCardName() {
         return cardName;
     }
 
-    public String getCardType(){
+    public void setCardName(String cardName) {
+        this.cardName = cardName;
+    }
+
+    public String getCardType() {
         return cardType;
     }
 
-    public int getEnergyCost(){
+    public void setCardType(String cardType) {
+        this.cardType = cardType;
+    }
+
+    public String getFaction() {
+        return faction;
+    }
+
+    public void setFaction(String faction) {
+        this.faction = faction;
+    }
+
+    public int getEnergyCost() {
         return energyCost;
     }
 
-    public Object getPairedBakuCores(){
+    public void setEnergyCost(int energyCost) {
+        this.energyCost = energyCost;
+    }
+
+    public Object getPairedBakuCores() {
         return pairedBakuCores;
     }
 
-    public String getBaseBakugan(){
+    public void setPairedBakuCores(Object pairedBakuCores) {
+        this.pairedBakuCores = pairedBakuCores;
+    }
+
+    public String getBaseBakugan() {
         return baseBakugan;
     }
 
-    public int getbPower(){
+    public void setBaseBakugan(String baseBakugan) {
+        this.baseBakugan = baseBakugan;
+    }
+
+    public int getbPower() {
         return bPower;
     }
 
-    public int getDamage(){
+    public void setbPower(int bPower) {
+        this.bPower = bPower;
+    }
+
+    public int getDamage() {
         return damage;
     }
 
-    public String getRarity(){
+    public void setDamage(int damage) {
+        this.damage = damage;
+    }
+
+    public String getRarity() {
         return rarity;
     }
 
-    public void setNumber(int n){
-        this.number = n;
-    }
-
-    public void setCardName(String name){
-        this.cardName = name;
-    }
-
-    public void setCardType(String type){
-        this.cardType = type;
-    }
-
-    public void setFaction(String f){
-        this.faction = f;
-    }
-
-    public void setEnergyCost(int cost){
-        this.energyCost = cost;
-    }
-
-    public void setPairedBakuCores(Object cores){
-        this.pairedBakuCores = cores;
-    }
-
-    public void setBaseBakugan(String base){
-        this.baseBakugan = base;
-    }
-
-    public void setbPower(int power){
-        this.bPower = power;
-    }
-
-    public void setDamage(int dmg){
-        this.damage = dmg;
-    }
-
-    public void setRarity(String r){
-        this.rarity = r;
+    public void setRarity(String rarity) {
+        this.rarity = rarity;
     }
 }
