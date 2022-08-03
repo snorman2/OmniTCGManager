@@ -13,44 +13,47 @@ import java.util.ArrayList;
 @Validated
 public class DeckController {
 
-	private DeckService deckService;
+	private DeckService deckService = new DeckService();
 
 	public static void main(String[] args) {
 		SpringApplication.run(DeckController.class, args);
 	}
 
 	@PostMapping("/create")
-	public String createDeck(@RequestBody @JsonProperty Object newDeck){
-		//why is this a LinkedHashMap
-		System.out.println(newDeck);
+	public String createDeck(@RequestBody DeckModel newDeck){
+
+		System.out.println(newDeck.getDeckName());
 		System.out.println(newDeck.getClass());
-
-		return "deck created";
-
-		//return deckService.createDeck(id, name, tcg, cards);
+		String response = deckService.createDeck(newDeck);
+		return response;
 	}
 
 	@GetMapping("/deck")
-	public String getDeck(@RequestParam(value = "id", defaultValue = "0")  String id){
+	public DeckModel getDeck(@RequestParam(value = "id")  String id){
 
-		try{
-			Integer.parseInt(id);
-			return String.format("Deck id is %s", id);
-		} catch (NumberFormatException ex){
-			return String.format("Invalid deck Id: %s", ex);
-		}
+			int deckID = Integer.parseInt(id);
+			return deckService.getDeck(deckID);
 	}
 
 	@PostMapping("/deck/update")
-	public String updateDeck(@RequestBody int id, String tcg, ArrayList newCards){
-		return deckService.updateDeck(id, tcg, newCards);
+	public String updateDeck(@RequestParam(value = "id") String id, @RequestBody DeckModel updatedDeck){
+
+		int deckId = Integer.parseInt(id);
+		String updatedTcg = updatedDeck.getDeckTcg();
+		ArrayList updatedCards = updatedDeck.getCards();
+
+		return deckService.updateDeck(deckId, updatedTcg, updatedCards);
 	}
 
-	@GetMapping("/decks")
-	public String getAllDecks(){
-		return "decks";
+	@GetMapping("/collection")
+	public ArrayList<DeckModel> getCollection(){
+		return deckService.getCollection();
 	}
 
 
-
+	@PostMapping("/deck/delete")
+	public String deleteDeck(@RequestParam(value = "id") String id){
+		int deckId = Integer.parseInt(id);
+	return deckService.deleteDeck(deckId);
+	}
 }
