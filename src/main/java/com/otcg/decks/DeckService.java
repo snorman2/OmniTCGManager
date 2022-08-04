@@ -1,42 +1,37 @@
 package com.otcg.decks;
-import com.otcg.api.ResponseModel;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.List;
 
 @Service
 public class DeckService {
 
     private ArrayList<DeckModel> decks = new ArrayList();
 
-    private ResponseModel myResponse = new ResponseModel();
-
-
     public DeckModel getDeck(int id) {
-        DeckModel selectedDeck = decks.stream().filter(d -> d.getId() == id).findFirst().get();
-        myResponse.setDeckList(selectedDeck);
-        return myResponse.getDeckList();
+
+        DeckModel targetDeck = decks.stream().filter(d -> d.getId() == id).findFirst().get();
+        return targetDeck;
+
     }
 
     public String createDeck(DeckModel newDeck) {
         decks.add(newDeck);
         return String.format("Deck has been created: Deck for %s Name:%s Id:%s", newDeck.getDeckTcg(), newDeck.getDeckName(), newDeck.getId());
     }
+    //needs to figure out how getDeck() can return it's own custom message with an invalid index.
+    public Boolean updateDeck(int id, String tcg, String name, ArrayList newCards) {
+        DeckModel targetDeck = getDeck(id);
+        ArrayList currentCards = targetDeck.getCards();
 
-    public String updateDeck(int id, String tcg, ArrayList newCards) {
-        DeckModel deck = getDeck(id);
-        ArrayList currentCards = deck.getCards();
-        if (deck.getDeckTcg().equals(tcg)) {
-            if (currentCards.equals(newCards)) {
-                return "Deck is already up to date";
-            } else {
-                deck.setDeck(newCards);
-                return "Deck has been updated successfully";
-            }
-        } else {
-            return "This deck is for another TCG. Please ensure you're using the correct tcg and deck id";
+        if (targetDeck == null || !(targetDeck instanceof DeckModel) || !(targetDeck.getDeckTcg().equals(tcg)))  {
+            return false;
         }
+        targetDeck.setDeckName(name);
+        if (currentCards != newCards){
+            targetDeck.setDeck(newCards);
+        }
+        return true;
     }
 
     public String deleteDeck(int id) {
@@ -50,8 +45,8 @@ public class DeckService {
         return "Deck deleted successfully";
     }
 
-    public ArrayList<DeckModel> getCollection(){
-        myResponse.setCollection(decks);
-        return myResponse.getCollection();
+    public String getCollection(){
+
+        return "collection";
     }
 }
