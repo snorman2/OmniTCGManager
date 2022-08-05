@@ -42,7 +42,7 @@ public class DeckService {
             String targetTcg = targetDeck.getDeckTcg();
             boolean isSame = areSame(updatedDeck, targetDeck);
             //reject changing a deck to a different tcg or attempting to update a deck to the same deck
-            //I need my own equals method for the deck service to compare
+
             if (!updatedTcg.equals(targetTcg) || isSame){
                 return false;
             }
