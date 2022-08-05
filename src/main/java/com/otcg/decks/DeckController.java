@@ -1,6 +1,6 @@
 package com.otcg.decks;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.http.HttpStatus;
@@ -9,7 +9,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.ArrayList;
+
 
 @SpringBootApplication
 @RestController
@@ -29,7 +29,7 @@ public class DeckController {
 	}
 
 	@GetMapping("/deck")
-	public ResponseEntity getDeck(@RequestParam(value = "id")  int id){
+	public ResponseEntity getDeck(@RequestParam(value = "id")  String id){
 
 			DeckModel deck = deckService.getDeck(id);
 			if (deck == null || !(deck instanceof DeckModel)){
@@ -42,14 +42,12 @@ public class DeckController {
 	@PostMapping("/deck/update")
 	public ResponseEntity<String> updateDeck(@Valid  @RequestBody DeckModel updatedDeck){
 
-		String updatedTcg = updatedDeck.getDeckTcg();
-		ArrayList updatedCards = updatedDeck.getCards();
-		String name = updatedDeck.getDeckName();
-		int id = updatedDeck.getId();
-		Boolean isUpdated = deckService.updateDeck(id, updatedTcg, name, updatedCards);
+		Boolean isUpdated = deckService.updateDeck(updatedDeck);
+		String tcg = updatedDeck.getDeckTcg();
+		String id = updatedDeck.getId();
 
 		if (!isUpdated){
-			String message = String.format("There was a problem when updating the deck. Ensure the Id is valid and that the Tcg is the same. Id: %s Tcg: %s", id,updatedTcg);
+			String message = String.format("There was a problem when updating the deck. Ensure the Id is valid and that the Tcg is the same. Id: %s Tcg: %s", id,tcg);
 			return new ResponseEntity(message, HttpStatus.NOT_FOUND);
 		} else {
 			String message = "Deck updated successfully.";
@@ -65,9 +63,16 @@ public class DeckController {
 	}
 
 
-	@PostMapping("/deck/delete")
-	public String deleteDeck(@RequestParam(value = "id") String id){
-		int deckId = Integer.parseInt(id);
-	return deckService.deleteDeck(deckId);
+	@DeleteMapping("/deck")
+	public ResponseEntity<String> deleteDeck(@RequestParam(value = "id") String id){
+
+	Boolean didDelete = deckService.deleteDeck(id);
+
+	if (!didDelete){
+		String message = "Invalid deck id";
+		return new ResponseEntity<>(message, HttpStatus.NOT_FOUND);
+	}
+	String message = "Deck deleted successfully";
+	return new ResponseEntity<>(message, HttpStatus.OK);
 	}
 }

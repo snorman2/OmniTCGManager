@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class DeckModel {
     @NotNull(message = "Deck id must be an integer")
-    private int id;
+    private String id;
     @NotEmpty(message = "Deck name cannot be blank")
     private String deckName;
     @NotEmpty(message = "Tcg cannot be blank")
@@ -20,11 +20,11 @@ public class DeckModel {
         return new Object[]{id, deckName, deckTcg};
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
