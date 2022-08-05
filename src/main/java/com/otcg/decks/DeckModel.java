@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 
 public class DeckModel {
-    @NotNull(message = "Deck id must be an integer")
+    @NotNull(message = "Deck id cannot be null")
     private String id;
     @NotEmpty(message = "Deck name cannot be blank")
     private String deckName;
