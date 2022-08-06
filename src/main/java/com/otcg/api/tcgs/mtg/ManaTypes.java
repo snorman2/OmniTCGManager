@@ -1,4 +1,4 @@
-package com.otcg.tcgs.mtg;
+package com.otcg.api.tcgs.mtg;
 
 /**
  * <pre>

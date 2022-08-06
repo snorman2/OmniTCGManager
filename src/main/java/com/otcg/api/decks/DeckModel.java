@@ -1,12 +1,13 @@
-package com.otcg.decks;
+package com.otcg.api.decks;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 
-public class DeckModel {
+public class DeckModel implements Serializable {
     @NotNull(message = "Deck id cannot be null")
     private String id;
     @NotEmpty(message = "Deck name cannot be blank")

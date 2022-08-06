@@ -1,14 +1,16 @@
-package com.otcg.decks;
+package com.otcg.api.decks;
+import com.otcg.api.FileService;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Objects;
+
 
 @Service
 public class DeckService {
 
     private HashMap<String,DeckModel> decks = new HashMap<String, DeckModel>();
+    private FileService fs = new FileService();
 
     public DeckModel getDeck(String id) {
         //how to return a custom response if decks.get(id) fails??
@@ -24,6 +26,7 @@ public class DeckService {
         String deckName = newDeck.getDeckName();
         if (!decks.containsKey(deckId)){
             decks.put(deckId, newDeck);
+            fs.uploadDeck(newDeck);
             return String.format("Deck has been created: Deck for %s Name:%s Id:%s", deckTcg, deckName, deckId);
         }
        return String.format ("A deck for %s already exists with Name: %s and Id:%s", deckTcg, deckName, deckId);

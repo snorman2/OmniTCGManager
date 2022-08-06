@@ -1,4 +1,4 @@
-package com.otcg.decks;
+package com.otcg.api.decks;
 
 
 import org.springframework.boot.SpringApplication;
