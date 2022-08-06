@@ -60,7 +60,7 @@ public class DeckService {
 
     }
 
-    public boolean areSame(DeckModel deck1, DeckModel deck2) {
+    private boolean areSame(DeckModel deck1, DeckModel deck2) {
         String deck1Name = deck1.getDeckName();
         String deck1Id = deck1.getId();
         String deck1Tcg = deck1.getDeckTcg();
