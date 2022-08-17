@@ -9,6 +9,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.HashMap;
 
 
 @SpringBootApplication
@@ -47,7 +48,7 @@ public class DeckController {
 		String id = updatedDeck.getId();
 
 		if (!isUpdated){
-			String message = String.format("There was a problem when updating the deck. Ensure the Id is valid and that the Tcg is the same. Id: %s Tcg: %s", id,tcg);
+			String message = String.format("There was a problem when updating the deck. Ensure the Id is valid, Tcg is the same, or that the cards are not the same. Id: %s Tcg: %s", id,tcg);
 			return new ResponseEntity(message, HttpStatus.NOT_FOUND);
 		} else {
 			String message = "Deck updated successfully.";
@@ -57,9 +58,10 @@ public class DeckController {
 	}
 
 	@GetMapping("/collection")
-	public String getCollection(){
-		return "collection";
-		//return deckService.getCollection();
+	public ResponseEntity<HashMap<String,DeckModel>> getCollection(){
+
+		HashMap<String,DeckModel> collection = deckService.getCollection();
+		return new ResponseEntity<HashMap<String,DeckModel>>(collection, HttpStatus.OK);
 	}
 
 

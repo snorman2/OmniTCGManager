@@ -1,4 +1,4 @@
-package com.otcg.api.tcgs.bakugan;
+package com.otcg.tcgs.mtg;
 
 /**
  * <pre>
@@ -14,9 +14,11 @@ package com.otcg.api.tcgs.bakugan;
  */
 
 public enum CardTypes {
-    Character,
-    Action,
-    Flip,
-    Hero,
-    Evo;
+    Land,
+    Creature,
+    Artifact,
+    Enchantment,
+    Planeswalker,
+    Instant,
+    Sorcery
 }

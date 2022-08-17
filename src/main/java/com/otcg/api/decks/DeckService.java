@@ -44,9 +44,14 @@ public class DeckService {
             ArrayList currentCards = targetDeck.getCards();
             String targetTcg = targetDeck.getDeckTcg();
             boolean isSame = areSame(updatedDeck, targetDeck);
-            //reject changing a deck to a different tcg or attempting to update a deck to the same deck
 
-            if (!updatedTcg.equals(targetTcg) || isSame){
+            //reject changing a deck to a different tcg or attempting to update a deck to the same deck
+            for (int i = 0; i < targetTcg.length(); i++) {
+                if (!(targetTcg.charAt(i) == updatedTcg.charAt(i))){
+                    return false;
+                }
+            }
+            if (isSame){
                 return false;
             }
             //update the deck if there are any differences in content
@@ -87,8 +92,8 @@ public class DeckService {
         return true;
     }
 
-    public String getCollection(){
+    public HashMap<String,DeckModel> getCollection(){
 
-        return "collection";
+        return decks;
     }
 }

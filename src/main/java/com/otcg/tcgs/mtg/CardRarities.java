@@ -1,4 +1,4 @@
-package com.otcg.api.tcgs.bakugan;
+package com.otcg.tcgs.mtg;
 
 /**
  * <pre>
@@ -13,10 +13,10 @@ package com.otcg.api.tcgs.bakugan;
  * </pre>
  */
 
+
 public enum CardRarities {
     Common,
+    Uncommon,
     Rare,
-    Super_Rare,
-    Awesome_Rare,
-    Bakugan_Elite;
+    Mythic_Rare
 }

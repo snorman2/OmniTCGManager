@@ -1,4 +1,4 @@
-package com.otcg.api.tcgs.bakugan;
+package com.otcg.tcgs.bakugan;
 
 /**
  * <pre>
