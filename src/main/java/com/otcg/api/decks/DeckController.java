@@ -1,8 +1,5 @@
 package com.otcg.api.decks;
 
-
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -12,16 +9,12 @@ import javax.validation.Valid;
 import java.util.HashMap;
 
 
-@SpringBootApplication
+
 @RestController
 @Validated
 public class DeckController {
 
 	private DeckService deckService = new DeckService();
-
-	public static void main(String[] args) {
-		SpringApplication.run(DeckController.class, args);
-	}
 
 	@PostMapping("/create")
 	public ResponseEntity<String> createDeck(@Valid @RequestBody DeckModel newDeck){
