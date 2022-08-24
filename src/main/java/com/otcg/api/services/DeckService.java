@@ -1,5 +1,5 @@
-package com.otcg.api.decks;
-import com.otcg.api.FileService;
+package com.otcg.api.services;
+import com.otcg.api.decks.DeckModel;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -9,7 +9,7 @@ import java.util.HashMap;
 @Service
 public class DeckService {
 
-    private HashMap<String,DeckModel> decks = new HashMap<String, DeckModel>();
+    private HashMap<String, DeckModel> decks = new HashMap<String, DeckModel>();
     private FileService fs = new FileService();
 
     public DeckModel getDeck(String id) {

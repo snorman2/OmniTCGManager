@@ -1,4 +1,4 @@
-package com.otcg.api;
+package com.otcg.api.services;
 
 import com.otcg.api.decks.DeckModel;
 
