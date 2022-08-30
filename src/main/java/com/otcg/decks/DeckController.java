@@ -9,6 +9,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.HashMap;
 
 
 @SpringBootApplication
@@ -57,9 +58,9 @@ public class DeckController {
 	}
 
 	@GetMapping("/collection")
-	public String getCollection(){
-		return "collection";
-		//return deckService.getCollection();
+	public ResponseEntity getCollection(){
+		HashMap<String, DeckModel> decks = deckService.getCollection();
+		return new ResponseEntity(decks, HttpStatus.OK);
 	}
 
 

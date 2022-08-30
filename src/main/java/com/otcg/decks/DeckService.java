@@ -26,7 +26,7 @@ public class DeckService {
             decks.put(deckId, newDeck);
             return String.format("Deck has been created: Deck for %s Name:%s Id:%s", deckTcg, deckName, deckId);
         }
-       return String.format ("A deck for %s already exists with Name: %s and Id:%s", deckTcg, deckName, deckId);
+       return String.format ("A deck for %s already exists with Id:%s. Try again.",deckTcg, deckId);
     }
 
     public Boolean updateDeck(DeckModel updatedDeck) {
@@ -84,8 +84,7 @@ public class DeckService {
         return true;
     }
 
-    public String getCollection(){
-
-        return "collection";
+    public HashMap<String,DeckModel> getCollection(){
+        return decks;
     }
 }
